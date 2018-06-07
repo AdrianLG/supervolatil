@@ -1,0 +1,50 @@
+<section class="login p-fixed d-flex text-center bg-primary common-img-bg">
+  <div class="auth-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="login-card card-body auth-body">
+          <form class="md-float-material">
+            <div class="auth-box">
+              <div class="text-center">
+                <img src="assets/images/auth/logo-dark.png" alt="logo.png" style="display: inline-block;">
+              </div>
+              <div>
+                <p class="text-inverse">Identifiquese para continuar...</p>
+              </div>
+              <div class="alert alert-danger icons-alert" *ngIf="authError">
+                <button class="close" parentremove="" type="button" (click)="authError='';">
+                  <i class="icofont icofont-close-line-circled"></i>
+                </button>
+                <p>
+                  <strong>ERROR!</strong> Acceso Denegado
+                  <br>
+                  <code>{{authError}}</code>
+                </p>
+              </div>
+
+              <div class="input-group">
+                <input type="email" class="form-control" placeholder="Correo Electronico" [(ngModel)]="user" name="usr" (keydown.enter)="login()">
+                <span class="md-line"></span>
+              </div>
+              <div class="text-danger" *ngIf="user&&!password">Introduzca su Contraseña</div>
+              <div class="input-group">
+                <input type="password" class="form-control" placeholder="Contraseña" [(ngModel)]="password" name="pwd" (keydown.enter)="login()">
+                <span class="md-line"></span>
+              </div>
+              <div class="row m-t-30">
+                <div class="col-md-12">
+                  <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" (click)="login()" [disabled]="!password">
+                    <i class="icofont icofont-key"></i> ACCEDER
+                  </button>
+                </div>
+              </div>
+              <div>
+                <i class="text-inverse text-center m-b-0">Copyright <b>©2018 AnubisCorp</b></i>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

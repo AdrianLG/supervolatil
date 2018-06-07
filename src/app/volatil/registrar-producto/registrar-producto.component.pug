@@ -1,0 +1,6 @@
+app-card('[title]'="'REGISTRAR PRODUCTO'")
+    .form-group.row
+        label.col-sm-2(for="productName") Producto
+        .col-sm-10
+            input.form-control.form-control-round(type="text",name="productName")
+    button.btn.btn-primary('(click)'="registrar()") Registrar
