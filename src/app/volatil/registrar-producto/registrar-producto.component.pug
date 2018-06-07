@@ -1,6 +1,65 @@
 app-card('[title]'="'REGISTRAR PRODUCTO'")
+    h5.text-primary DATOS GENERALES
     .form-group.row
-        label.col-sm-2(for="productName") Producto
-        .col-sm-10
-            input.form-control.form-control-round(type="text",name="productName")
-    button.btn.btn-primary('(click)'="registrar()") Registrar
+        .col-sm-6
+            label(for="producto") Producto
+            input.form-control.form-control-round(type="text",name="producto")
+        .col-sm-3
+            label(for="cantidad") Cantidad
+            input.form-control.form-control-round(type="number",name="cantidad",step="0.01")
+        .col-sm-3
+            label(for="unidadDeMedida") Unidad de Medida
+            select.form-control.form-control-round(name="unidadDeMedida",'[(ngModel)]'="unidadDeMedida")
+                option(value="pieza") Pieza(s)
+                option(value="kilo") Kilo(s)
+                option(value="litro") Litro(s)
+    hr
+    h5.text-primary DATOS OPCIONALES
+    .form-group.row
+        .col-sm-4
+            label(for="caducidad") Caducidad
+            .input-group
+                input.form-control(placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #d="ngbDatepicker")
+                .input-group-addon.bg-default('(click)'="d.toggle()")
+                    span.icofont.icofont-ui-calendar
+        .col-sm-4
+            label(for="codigoDeBarras") Codigo de Barras
+            input.form-control.form-control-round(type="number",name="codigoDeBarras")
+        .col-sm-4
+            label(for="proveedor") Proveedor
+            .input-group.input-group-button
+                .input-group-addon('(click)'="agregarProveedor()")
+                    button.btn.btn-primary +
+                select.form-control.form-control-round(name="proveedor")
+                .input-group-addon
+                    button.btn.btn-primary -
+    hr
+    h5.text-danger COMPRA
+    .form-group.row
+        .col-sm-3
+            span El precio es por:
+        .col-sm-2
+            input#ppt1(type="radio" name="ppt" value="total")
+            label(for="ppt1") El total
+        .col-sm-2
+            input#ppt2(type="radio" name="ppt" value="unidad")
+            label(for="ppt2") Cada {{unidadDeMedida}}
+        .col-sm-5
+            input.form-control.form-control-round.form-control-danger(placeholder="$",type="number",name="precioCompra",step="0.01")
+    .text-right
+        label.label.label-lg.label-inverse-danger Costo total de ###
+        label.label.label-lg.label-inverse-danger ### Por {{unidadDeMedida}}
+        label.label.label-lg.label-inverse-primary Precio Recomendado De Venta Por {{unidadDeMedida}}: ###
+    hr
+    h5.text-success VENTA
+    .form-group.row
+        label.col-sm-6(for="precioVenta") Precio de Venta por {{unidadDeMedida}}
+        .col-sm-6
+            input.form-control.form-control-round.form-control-success(placeholder="$",type="number",name="precioVenta",step="0.01")
+    .text-right
+        label.label.label-lg.label-inverse-success Ganancia de ### Por {{unidadDeMedida}}
+        label.label.label-lg.label-inverse-success Ganancia de ### Por Todo el Producto
+        label.label.label-lg.label-inverse-success Valor de ### Por Todo el Producto
+    hr
+    .text-right
+        button.btn.btn-round.btn-primary('(click)'="registrar()") Registrar

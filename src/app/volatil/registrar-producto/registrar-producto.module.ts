@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RegistrarProductoComponent } from './registrar-producto.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 export const RegistrarProductoRoutes: Routes = [
   {
@@ -21,7 +22,8 @@ export const RegistrarProductoRoutes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(RegistrarProductoRoutes),
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   declarations: [RegistrarProductoComponent]
 })

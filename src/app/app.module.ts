@@ -13,8 +13,10 @@ import {BreadcrumbsComponent} from './layout/admin/breadcrumbs/breadcrumbs.compo
 import {TitleComponent} from './layout/admin/title/title.component';
 import {AuthComponent} from './layout/auth/auth.component';
 
+import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from "./auth.service";
 import { AuthGuard } from "./auth.guard";
+import { BackendService } from "./backend.service";
 
 @NgModule({
   declarations: [
@@ -26,12 +28,13 @@ import { AuthGuard } from "./auth.guard";
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes),
     ClickOutsideModule,
     SharedModule
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, BackendService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,10 +1,87 @@
 
 <app-card [title]="'REGISTRAR PRODUCTO'">
+  <h5 class="text-primary">DATOS GENERALES</h5>
   <div class="form-group row">
-    <label class="col-sm-2" for="productName">Producto</label>
-    <div class="col-sm-10">
-      <input class="form-control form-control-round" type="text" name="productName"/>
+    <div class="col-sm-6">
+      <label for="producto">Producto</label>
+      <input class="form-control form-control-round" type="text" name="producto"/>
+    </div>
+    <div class="col-sm-3">
+      <label for="cantidad">Cantidad</label>
+      <input class="form-control form-control-round" type="number" name="cantidad" step="0.01"/>
+    </div>
+    <div class="col-sm-3">
+      <label for="unidadDeMedida">Unidad de Medida</label>
+      <select class="form-control form-control-round" name="unidadDeMedida" [(ngModel)]="unidadDeMedida">
+        <option value="pieza">Pieza(s)</option>
+        <option value="kilo">Kilo(s)</option>
+        <option value="litro">Litro(s)</option>
+      </select>
     </div>
   </div>
-  <button class="btn btn-primary" (click)="registrar()">Registrar Nuevo Producto PUG</button>
+  <hr/>
+  <h5 class="text-primary">DATOS OPCIONALES</h5>
+  <div class="form-group row">
+    <div class="col-sm-4">
+      <label for="caducidad">Caducidad</label>
+      <div class="input-group">
+        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker="ngbDatepicker" #d="ngbDatepicker"/>
+        <div class="input-group-addon bg-default" (click)="d.toggle()"><span class="icofont icofont-ui-calendar"></span></div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <label for="codigoDeBarras">Codigo de Barras</label>
+      <input class="form-control form-control-round" type="number" name="codigoDeBarras"/>
+    </div>
+    <div class="col-sm-4">
+      <label for="proveedor">Proveedor</label>
+      <div class="input-group input-group-button">
+        <div class="input-group-addon" (click)="agregarProveedor()">
+          <button class="btn btn-primary">+</button>
+        </div>
+        <select class="form-control form-control-round" name="proveedor"></select>
+        <div class="input-group-addon">
+          <button class="btn btn-primary">-</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr/>
+  <h5 class="text-danger">COMPRA</h5>
+  <div class="form-group row">
+    <div class="col-sm-3"><span>El precio es por:</span></div>
+    <div class="col-sm-2">
+      <input id="ppt1" type="radio" name="ppt" value="total"/>
+      <label for="ppt1">El total</label>
+    </div>
+    <div class="col-sm-2">
+      <input id="ppt2" type="radio" name="ppt" value="unidad"/>
+      <label for="ppt2">Cada {{unidadDeMedida}}</label>
+    </div>
+    <div class="col-sm-5">
+      <input class="form-control form-control-round form-control-danger" placeholder="$" type="number" name="precioCompra" step="0.01"/>
+    </div>
+  </div>
+  <div class="text-right">
+    <label class="label label-lg label-inverse-danger">Costo total de ###</label>
+    <label class="label label-lg label-inverse-danger">### Por {{unidadDeMedida}}</label>
+    <label class="label label-lg label-inverse-primary">Precio Recomendado De Venta Por {{unidadDeMedida}}: ###</label>
+  </div>
+  <hr/>
+  <h5 class="text-success">VENTA</h5>
+  <div class="form-group row">
+    <label class="col-sm-6" for="precioVenta">Precio de Venta por {{unidadDeMedida}}</label>
+    <div class="col-sm-6">
+      <input class="form-control form-control-round form-control-success" placeholder="$" type="number" name="precioVenta" step="0.01"/>
+    </div>
+  </div>
+  <div class="text-right">
+    <label class="label label-lg label-inverse-success">Ganancia de ### Por {{unidadDeMedida}}</label>
+    <label class="label label-lg label-inverse-success">Ganancia de ### Por Todo el Producto</label>
+    <label class="label label-lg label-inverse-success">Valor de ### Por Todo el Producto</label>
+  </div>
+  <hr/>
+  <div class="text-right">
+    <button class="btn btn-round btn-primary" (click)="registrar()">Registrar</button>
+  </div>
 </app-card>
